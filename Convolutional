@@ -1,9 +1,20 @@
+import numpy as np
+import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Activation, Dense, Flatten, BatchNormalization, Conv2D, MaxPool2D
+from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.metrics import categorical_crossentropy
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from sklearn.metrics import confusion_matrix
+import itertools
 import os
-import random
 import shutil
+import random
 import glob
-
-
+import matplotlib.pyplot as plt
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
 
 
 os.chdir("C:\\Users\\xavie\\OneDrive\\Desktop\\train\\train")
@@ -30,3 +41,10 @@ for i in random.sample(glob.glob('C:\\Users\\xavie\\OneDrive\\Desktop\\train\\tr
 train_samples = "train/cats,train/dogs"
 validation_samples = "valid/dog,valid/cat"
 test_samples = "test/dog,test/cat"
+
+train_samples = ImageDataGenerator(preprocessing_function=tf.keras.applications.vgg16.preprocess_input) \
+    .flow_from_directory(directory=train_samples, target_size=(224,224), classes=['cat', 'dog'], batch_size=10)
+validation_samples = ImageDataGenerator(preprocessing_function=tf.keras.applications.vgg16.preprocess_input) \
+    .flow_from_directory(directory=validation_samples, target_size=(224,224), classes=['cat', 'dog'], batch_size=10)
+test_samples = ImageDataGenerator(preprocessing_function=tf.keras.applications.vgg16.preprocess_input) \
+    .flow_from_directory(directory=test_samples, target_size=(224,224), classes=['cat', 'dog'], batch_size=10, shuffle=False)
