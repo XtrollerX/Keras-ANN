@@ -4,7 +4,7 @@ My journey in Neural networks and Machine learning. I am using this to document 
 
 
 # What I have learned
-- The basics of using the Keras, tensorflow and pytorch Libary
+- The basics of using the Keras and tensorflow library, this model is using an ANN for a randomly generated set of data
 - Learned the basic strucutre of building a neural network such as Data augmentations including converting raw data into numpy and tensors.
 - Knowing the different layers for different types of NNs such as Dense layers and Conv layers.
 - Exploring the different loss functions and optimization functions such as Adamn's optimizer and cross entrophy loss.
